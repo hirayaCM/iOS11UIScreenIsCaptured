@@ -14,23 +14,15 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    @IBOutlet weak var label: UILabel!
+    @IBOutlet weak var normalLabel: UILabel!
+    @IBOutlet weak var notificationLabel: UILabel!
+    @IBOutlet weak var kvoLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.updateLabel()
-        
-        NotificationCenter.default.addObserver(forName: .UIScreenCapturedDidChange,
-                                               object: nil,
-                                               queue: nil) { _ in
-                                                self.updateLabel()
-        }
-    }
-    
-    func updateLabel() {
-        label.text = UIScreen.main.isCaptured ? "キャプチャされています!" : "キャプチャされていません!"
-        label.textColor = UIScreen.main.isCaptured ? .red : .black
+        let isCaptured = UIScreen.main.isCaptured
+        normalLabel.text = isCaptured ? "キャプチャされています!" : "キャプチャされていません!"
+        normalLabel.textColor = isCaptured ? .red : .black
     }
 }
-
